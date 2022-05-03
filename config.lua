@@ -14,14 +14,6 @@ Config.Vehicles = {
         { ['vehiclename'] = "car 1 grade 1",         ['vehicle'] = "car1",          ['price'] = 37000},
         { ['vehiclename'] = "car 2 grade 1",         ['vehicle'] = "car2",          ['price'] = 37000},
     },
-    [2] = { --grade 2
-    },
-    [3] = { --grade 3
-    },
-    [4] = { --grade 4
-    },
-    [5] = { --grade 5
-    },
 }
 
 Config.AirVehicles = {
@@ -32,13 +24,5 @@ Config.AirVehicles = {
     [1]  = {--grade 1
         { ['vehiclename'] = "car 1 grade 1",         ['vehicle'] = "heli1",         ['price'] = 37000},
         { ['vehiclename'] = "car 1 grade 1",         ['vehicle'] = "heli2",         ['price'] = 37000},
-    },
-    [2]  = {--grade 2
-    },
-    [3]  = {--grade 3
-    },
-    [4]  = { --grade 4
-    },
-    [5]  = { --grade 5
     },
 }
