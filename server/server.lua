@@ -2,9 +2,9 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local isActive = false
 
 discord = {
-    ['webhook'] = "https://discord.com/api/webhooks/961284854887088268/aIZOMHlQtT9EB4fgH2Jo6WEDgK_eUcNHfluGjf_irUFNLj-pkIy_j22af9bnl4WTN4kD",
-    ['name'] = 'Opal Network',
-    ['image'] = "https://cdn.discordapp.com/attachments/952990680299495454/952991183779561532/opal-logo-svg.png"
+    ['webhook'] = "",
+    ['name'] = '',
+    ['image'] = ""
 }
 
 function DiscordLog(name, message, color)
@@ -13,13 +13,13 @@ function DiscordLog(name, message, color)
             ["color"] = 04255,
             ["title"] = "Police Garage Purchase Records",
             ["description"] = message,
-            ["url"] = "https://discord.gg/opal",
+            ["url"] = "",
             ["footer"] = {
-            ["text"] = "By Opal Network",
-            ["icon_url"] = "https://cdn.discordapp.com/attachments/952990680299495454/952991183779561532/opal-logo-svg.png"
+            ["text"] = "",
+            ["icon_url"] = ""
         },
             ["thumbnail"] = {
-                ["url"] = "https://cdn.discordapp.com/attachments/952990680299495454/952991183779561532/opal-logo-svg.png",
+                ["url"] = "",
             },
     }
 }
