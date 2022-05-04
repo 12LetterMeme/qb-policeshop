@@ -75,7 +75,7 @@ RegisterServerEvent('CL-PoliceGarage:TakeMoney', function(data)
     end    
 end)
 
-RegisterServerEvent('CL-PoliceGarage:TakeAirMoney', function(data)
+RegisterServerEvent('tlm-PoliceGarage:TakeAirMoney', function(data)
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
     local steamname = GetPlayerName(src)
