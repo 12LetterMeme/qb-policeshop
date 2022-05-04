@@ -62,7 +62,7 @@ RegisterNetEvent('CL-PoliceGarage:MenuHeli', function()
             header = "Police Air Garage",
             txt = "View Vehicles",
             params = {
-                event = "CL-PoliceGarage:AirCatalog",
+                event = "tlm-PoliceGarage:AirCatalog",
             }
         }
     }
@@ -116,7 +116,7 @@ RegisterNetEvent("CL-PoliceGarage:Catalog", function()
 end)
 
 --heli catalog
-RegisterNetEvent("CL-PoliceGarage:AirCatalog", function()
+RegisterNetEvent("tlm-PoliceGarage:AirCatalog", function()
     local vehicleMenu = {
         {
             header = "Police Air Garage",
@@ -130,7 +130,7 @@ RegisterNetEvent("CL-PoliceGarage:AirCatalog", function()
             txt = "Buy: " .. v.vehiclename .. " For: " .. v.price .. "$",
             params = {
                 isServer = true,
-                event = "CL-PoliceGarage:TakeAirMoney",
+                event = "tlm-PoliceGarage:TakeAirMoney",
                 args = {
                     price = v.price,
                     vehiclename = v.vehiclename,
@@ -188,7 +188,7 @@ RegisterNetEvent('CL-PoliceGarage:PreviewHeliMenu', function()
             header = v.vehiclename,
             txt = "Preview: " .. v.vehiclename,
             params = {
-                event = "CL-PoliceGarage:PreviewAirVehicle",
+                event = "tlm-PoliceGarage:PreviewAirVehicle",
                 args = {
                     vehicle = v.vehicle,
                 }
@@ -290,7 +290,7 @@ RegisterNetEvent("CL-PoliceGarage:SpawnVehicle", function(vehicle)
     end, coords, true)
 end)
 
-RegisterNetEvent("CL-PoliceGarage:SpawnAirVehicle", function(vehicle)
+RegisterNetEvent("tlm-PoliceGarage:SpawnAirVehicle", function(vehicle)
     local coords = vector4(-1266.04, -3371.06, 13.94, 330.3)
     local v = Config.AirVehicles
     QBCore.Functions.SpawnVehicle(vehicle, function(veh)
@@ -414,7 +414,7 @@ RegisterNetEvent("CL-PoliceGarage:PreviewVehicle", function(data)
     end
 end)
 
-RegisterNetEvent("CL-PoliceGarage:PreviewAirVehicle", function(data)
+RegisterNetEvent("tlm-PoliceGarage:PreviewAirVehicle", function(data)
     if Config.UsePreviewMenuSync then
         QBCore.Functions.TriggerCallback('CL-PoliceGarage:CheckIfActive', function(result)
             if result then
