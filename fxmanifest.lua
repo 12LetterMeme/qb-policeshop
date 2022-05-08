@@ -1,9 +1,9 @@
 fx_version 'adamant'
 game 'gta5'
 lua54 'yes'
-author "Edited by: 12LetterMeme#0001"
-description "A Simple Police Garage (NevoSwissa#0111)"
-version "1.0.1"
+author "Created by: NevoSwissa#0111.. Edited by: 12LetterMeme#0001"
+description "A Simple Police Garage"
+version "1.0.2"
 
 client_scripts {
     'client/client.lua',
