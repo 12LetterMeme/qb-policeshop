@@ -90,7 +90,7 @@ RegisterNetEvent("CL-PoliceGarage:Catalog", function()
             isMenuHeader = true,
         }
     }
-    local authorizedVehicles = Config.Vehicles[QBCore.Functions.GetPlayerData().job.grade.level]
+    local authorizedVehicles = Config.PoliceVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
     for k, v in pairs(authorizedVehicles) do
         vehicleMenu[#vehicleMenu+1] = {
             header = v.vehiclename,
@@ -123,7 +123,7 @@ RegisterNetEvent("tlm-PoliceGarage:AirCatalog", function()
             isMenuHeader = true,
         }
     }
-    local authorizedVehicles1 = Config.AirVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
+    local authorizedVehicles1 = Config.PoliceAirVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
     for k, v in pairs(authorizedVehicles1) do
         vehicleMenu[#vehicleMenu+1] = {
             header = v.vehiclename,
@@ -155,7 +155,8 @@ RegisterNetEvent('CL-PoliceGarage:PreviewCarMenu', function()
             isMenuHeader = true
         }
     }
-    for k, v in pairs(Config.Vehicles) do
+    local authorizedVehicles = Config.PoliceVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
+    for k, v in pairs(authorizedVehicles) do
         PreviewMenu[#PreviewMenu+1] = {
             header = v.vehiclename,
             txt = "Preview: " .. v.vehiclename,
@@ -177,14 +178,15 @@ RegisterNetEvent('CL-PoliceGarage:PreviewCarMenu', function()
 end)
 
 RegisterNetEvent('CL-PoliceGarage:PreviewHeliMenu', function()
-    local PreviewMenu = {
+    local PreviewMenu1 = {
         {
             header = "Preview Menu",
             isMenuHeader = true
         }
     }
-    for k, v in pairs(Config.AirVehicles) do
-        PreviewMenu[#PreviewMenu+1] = {
+    local authorizedVehicles1 = Config.PoliceAirVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
+    for k, v in pairs(authorizedVehicles1) do
+        PreviewMenu1[#PreviewMenu1+1] = {
             header = v.vehiclename,
             txt = "Preview: " .. v.vehiclename,
             params = {
@@ -195,13 +197,13 @@ RegisterNetEvent('CL-PoliceGarage:PreviewHeliMenu', function()
             }
         }
     end
-    PreviewMenu[#PreviewMenu+1] = {
+    PreviewMenu1[#PreviewMenu1+1] = {
         header = "⬅ Go Back",
         params = {
             event = "CL-PoliceGarage:Menu"
         }
     }
-    exports['qb-menu']:openMenu(PreviewMenu)
+    exports['qb-menu']:openMenu(PreviewMenu1)
 end)
 
 CreateThread(function()
@@ -215,14 +217,14 @@ CreateThread(function()
                 DrawMarker(36, 441.78894, -1020.011, 28.225797 + 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 0.7, 0.5, 0.5, 0, 0, 0, 255, true, false, false, true, false, false, false)
                 if Config.UseMarkerInsteadOfMenu then
                     if (GetDistanceBetweenCoords(plyCoords.x, plyCoords.y, plyCoords.z, 441.78894, -1020.011, 28.225797, true) < 1.5) and not IsPedInAnyVehicle(PlayerPedId(), false) then
-                        DrawText3D(441.78894, -1020.011, 28.225797, "~g~E~w~ - Police Garage") 
+                        DrawText3D(441.78894, -1020.011, 28.225797, "~g~E~w~ - Police Garage")
                         if IsControlJustReleased(0, 38) then
                             Notify("Park your car and comeback", "error")
                         end
                     end
                 else
                     if (GetDistanceBetweenCoords(plyCoords.x, plyCoords.y, plyCoords.z, 441.78894, -1020.011, 28.225797, true) < 1.5) then
-                        DrawText3D(441.78894, -1020.011, 28.225797, "~g~E~w~ - Police Garage") 
+                        DrawText3D(441.78894, -1020.011, 28.225797, "~g~E~w~ - Police Garage")
                         if IsControlJustReleased(0, 38) then
                             TriggerEvent("CL-PoliceGarage:Menu")
                         end
@@ -249,7 +251,7 @@ CreateThread(function()
                 DrawMarker(36, -1281.07, -3397.44, 13.94 + 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 0.7, 0.5, 0.5, 0, 0, 0, 255, true, false, false, true, false, false, false)
                 if Config.UseMarkerInsteadOfMenu then
                     if (GetDistanceBetweenCoords(plyCoords.x, plyCoords.y, plyCoords.z, -1281.07, -3397.44, 13.94, true) < 1.5) and not IsPedInAnyVehicle(PlayerPedId(), false) then
-                        DrawText3D(-1281.07, -3397.44, 13.94, "~g~E~w~ - Police Garage") 
+                        DrawText3D(-1281.07, -3397.44, 13.94, "~g~E~w~ - Police Air Garage")
                         if IsControlJustReleased(0, 38) then
                             Notify("Park your car and comeback", "error")
                         end
@@ -277,7 +279,7 @@ end)
 
 RegisterNetEvent("CL-PoliceGarage:SpawnVehicle", function(vehicle)
     local coords = vector4(438.47174, -1021.936, 28.627538, 96.793121)
-    local v = Config.Vehicles
+    local v = Config.PoliceVehicles
     QBCore.Functions.SpawnVehicle(vehicle, function(veh)
         local props = QBCore.Functions.GetVehicleProperties(veh)
         SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
@@ -292,7 +294,7 @@ end)
 
 RegisterNetEvent("tlm-PoliceGarage:SpawnAirVehicle", function(vehicle)
     local coords = vector4(-1266.04, -3371.06, 13.94, 330.3)
-    local v = Config.AirVehicles
+    local v = Config.PoliceAirVehicles
     QBCore.Functions.SpawnVehicle(vehicle, function(veh)
         local props = QBCore.Functions.GetVehicleProperties(veh)
         SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
@@ -306,80 +308,25 @@ RegisterNetEvent("tlm-PoliceGarage:SpawnAirVehicle", function(vehicle)
 end)
 
 RegisterNetEvent("CL-PoliceGarage:PreviewVehicle", function(data)
-    if Config.UsePreviewMenuSync then
-        QBCore.Functions.TriggerCallback('CL-PoliceGarage:CheckIfActive', function(result)
-            if result then
-                InPreview = true
-                local coords = vector4(307.1, -595.011, 43, 55.184043)
-                QBCore.Functions.SpawnVehicle(data.vehicle, function(veh)
-                    SetEntityVisible(PlayerPedId(), false, 1)
-                    FreezeEntityPosition(PlayerPedId(), true)
-                    SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
-                    exports['lj-fuel']:SetFuel(veh, 0.0)
-                    CloseMenu()
-                    FreezeEntityPosition(veh, true)
-                    SetVehicleEngineOn(veh, false, false)
-                    DoScreenFadeOut(200)
-                    Citizen.Wait(500)
-                    DoScreenFadeIn(200)
-                    SetVehicleUndriveable(veh, true)
-                    VehicleCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", 307.1, -595.011, 43, 50, 0.00, 282.17034, 80.00, true, 0)
-                    SetCamActive(VehicleCam, true)
-                    RenderScriptCams(true, true, 500, true, true)
-                    if Config.MS == 'high' then
-                        Citizen.CreateThread(function()
-                            while true do
-                                if InPreview then
-                                    ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
-                                elseif not InPreview then
-                                    break
-                                end
-                                Citizen.Wait(1)
-                            end
-                        end)
-                    elseif Config.MS == 'low' then
-                        ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
-                    end
-                    Citizen.CreateThread(function()
-                        while true do
-                            if IsControlJustReleased(0, 177) then
-                                SetEntityVisible(PlayerPedId(), true, 1)
-                                FreezeEntityPosition(PlayerPedId(), false)
-                                PlaySoundFrontend(-1, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
-                                QBCore.Functions.DeleteVehicle(veh)
-                                DoScreenFadeOut(200)
-                                Citizen.Wait(500)
-                                DoScreenFadeIn(200)
-                                RenderScriptCams(false, false, 1, true, true)
-                                InPreview = false
-                                TriggerServerEvent("CL-PoliceGarage:server:SetActive", false)
-                                break
-                            end
-                            Citizen.Wait(1)
-                        end
-                    end)
-                end, coords, true)
-            end
-        end)
-    else
-        InPreview = true
-        local coords = vector4(307.1, -595.011, 43, 99.184043)
-        QBCore.Functions.SpawnVehicle(data.vehicle, function(veh)
-            SetEntityVisible(PlayerPedId(), false, 1)
-            FreezeEntityPosition(PlayerPedId(), true)
-            SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
-            exports['lj-fuel']:SetFuel(veh, 0.0)
-            CloseMenu()
-            FreezeEntityPosition(veh, true)
-            SetVehicleEngineOn(veh, false, false)
-            DoScreenFadeOut(200)
-            Citizen.Wait(500)
-            DoScreenFadeIn(200)
-            SetVehicleUndriveable(veh, true)
-            VehicleCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", 307.1, -595.011, 43, 50, 0.00, 282.17034, 80.00, false, 0)
-            SetCamActive(VehicleCam, true)
-            RenderScriptCams(true, true, 500, true, true)
-            if Config.MS == 'high' then
+    QBCore.Functions.TriggerCallback('CL-PoliceGarage:CheckIfActive', function(result)
+        if result then
+            InPreview = true
+            local coords = vector4(307.1, -595.011, 43, 55.184043)
+            QBCore.Functions.SpawnVehicle(data.vehicle, function(veh)
+                SetEntityVisible(PlayerPedId(), false, 1)
+                FreezeEntityPosition(PlayerPedId(), true)
+                SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
+                exports['lj-fuel']:SetFuel(veh, 0.0)
+                CloseMenu()
+                FreezeEntityPosition(veh, true)
+                SetVehicleEngineOn(veh, false, false)
+                DoScreenFadeOut(200)
+                Citizen.Wait(500)
+                DoScreenFadeIn(200)
+                SetVehicleUndriveable(veh, true)
+                VehicleCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", 307.1, -595.011, 43, 50, 0.00, 282.17034, 80.00, true, 0)
+                SetCamActive(VehicleCam, true)
+                RenderScriptCams(true, true, 500, true, true)
                 Citizen.CreateThread(function()
                     while true do
                         if InPreview then
@@ -390,107 +337,51 @@ RegisterNetEvent("CL-PoliceGarage:PreviewVehicle", function(data)
                         Citizen.Wait(1)
                     end
                 end)
-            elseif Config.MS == 'low' then
-                ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
-            end
-            Citizen.CreateThread(function()
-                while true do
-                    if IsControlJustReleased(0, 177) then
-                        SetEntityVisible(PlayerPedId(), true, 1)
-                        FreezeEntityPosition(PlayerPedId(), false)
-                        PlaySoundFrontend(-1, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
-                        QBCore.Functions.DeleteVehicle(veh)
-                        DoScreenFadeOut(200)
-                        Citizen.Wait(500)
-                        DoScreenFadeIn(200)
-                        RenderScriptCams(false, false, 1, true, true)
-                        InPreview = false
-                        break
+                Citizen.CreateThread(function()
+                    while true do
+                        if IsControlJustReleased(0, 177) then
+                            SetEntityVisible(PlayerPedId(), true, 1)
+                            FreezeEntityPosition(PlayerPedId(), false)
+                            PlaySoundFrontend(-1, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
+                            QBCore.Functions.DeleteVehicle(veh)
+                            DoScreenFadeOut(200)
+                            Citizen.Wait(500)
+                            DoScreenFadeIn(200)
+                            RenderScriptCams(false, false, 1, true, true)
+                            InPreview = false
+                            TriggerServerEvent("CL-PoliceGarage:server:SetActive", false)
+                            break
+                        end
+                        Citizen.Wait(1)
                     end
-                    Citizen.Wait(1)
-                end
-            end)
-        end, coords, true)
-    end
+                end)
+            end, coords, true)
+        end
+    end)
 end)
 
 RegisterNetEvent("tlm-PoliceGarage:PreviewAirVehicle", function(data)
-    if Config.UsePreviewMenuSync then
-        QBCore.Functions.TriggerCallback('CL-PoliceGarage:CheckIfActive', function(result)
-            if result then
-                InPreview = true
-                local coords = vector4(-1271.18, -3380.68, 13.91, 30.00)
-                QBCore.Functions.SpawnVehicle(data.vehicle, function(veh)
-                    SetEntityVisible(PlayerPedId(), false, 1)
-                    FreezeEntityPosition(PlayerPedId(), true)
-                    SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
-                    exports['lj-fuel']:SetFuel(veh, 0.0)
-                    CloseMenu()
-                    FreezeEntityPosition(veh, true)
-                    SetVehicleEngineOn(veh, false, false)
-                    DoScreenFadeOut(200)
-                    Citizen.Wait(500)
-                    DoScreenFadeIn(200)
-                    SetVehicleUndriveable(veh, true)
-                    VehicleCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -1265.18, -3370.68, 17.91, 50, 0.00, 149.17034, 80.00, true, 0)
-                    SetCamActive(VehicleCam, true)
-                    RenderScriptCams(true, true, 500, true, true)
-                    if Config.MS == 'high' then
-                        Citizen.CreateThread(function()
-                            while true do
-                                if InPreview then
-                                    ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
-                                elseif not InPreview then
-                                    break
-                                end
-                                Citizen.Wait(1)
-                            end
-                        end)
-                    elseif Config.MS == 'low' then
-                        ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
-                    end
-                    Citizen.CreateThread(function()
-                        while true do
-                            if IsControlJustReleased(0, 177) then
-                                SetEntityVisible(PlayerPedId(), true, 1)
-                                FreezeEntityPosition(PlayerPedId(), false)
-                                PlaySoundFrontend(-1, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
-                                QBCore.Functions.DeleteVehicle(veh)
-                                DoScreenFadeOut(200)
-                                Citizen.Wait(500)
-                                DoScreenFadeIn(200)
-                                RenderScriptCams(false, false, 1, true, true)
-                                InPreview = false
-                                TriggerServerEvent("CL-PoliceGarage:server:SetActive", false)
-                                break
-                            end
-                            Citizen.Wait(1)
-                        end
-                    end)
-                end, coords, true)
-            end
-        end)
-    else
-        InPreview = true
-        local coords = vector4(-1271.18, -3380.68, 13.91, 30.00)
-        QBCore.Functions.SpawnVehicle(data.vehicle, function(veh)
-            SetEntityVisible(PlayerPedId(), false, 1)
-            FreezeEntityPosition(PlayerPedId(), true)
-            SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
-            exports['lj-fuel']:SetFuel(veh, 0.0)
-            CloseMenu()
-            FreezeEntityPosition(veh, true)
-            SetVehicleEngineOn(veh, false, false)
-            DoScreenFadeOut(200)
-            Citizen.Wait(500)
-            DoScreenFadeIn(200)
-            SetVehicleUndriveable(veh, true)
-            VehicleCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -1265.18, -3370.68, 17.91, 50, 0.00, 149.17034, 80.00, true, 0)
-            SetCamActive(VehicleCam, true)
-            RenderScriptCams(true, true, 500, true, true)
-            if Config.MS == 'high' then
+    QBCore.Functions.TriggerCallback('CL-PoliceGarage:CheckIfActive', function(result)
+        if result then
+            InPreview = true
+            local coords = vector4(-1271.18, -3380.68, 13.91, 30.00)
+            QBCore.Functions.SpawnVehicle(data.vehicle, function(veh)
+                SetEntityVisible(PlayerPedId(), false, 1)
+                FreezeEntityPosition(PlayerPedId(), true)
+                SetVehicleNumberPlateText(veh, "POL"..tostring(math.random(1000, 9999)))
+                exports['lj-fuel']:SetFuel(veh, 0.0)
+                CloseMenu()
+                FreezeEntityPosition(veh, true)
+                SetVehicleEngineOn(veh, false, false)
+                DoScreenFadeOut(200)
+                Citizen.Wait(500)
+                DoScreenFadeIn(200)
+                SetVehicleUndriveable(veh, true)
+                VehicleCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -1265.18, -3370.68, 17.91, 50, 0.00, 149.17034, 80.00, true, 0)
+                SetCamActive(VehicleCam, true)
+                RenderScriptCams(true, true, 500, true, true)
                 Citizen.CreateThread(function()
-                    while true do
+                        while true do
                         if InPreview then
                             ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
                         elseif not InPreview then
@@ -499,28 +390,27 @@ RegisterNetEvent("tlm-PoliceGarage:PreviewAirVehicle", function(data)
                         Citizen.Wait(1)
                     end
                 end)
-            elseif Config.MS == 'low' then
-                ShowHelpNotification("Press ~INPUT_FRONTEND_RRIGHT~ To Close")
-            end
-            Citizen.CreateThread(function()
-                while true do
-                    if IsControlJustReleased(0, 177) then
-                        SetEntityVisible(PlayerPedId(), true, 1)
-                        FreezeEntityPosition(PlayerPedId(), false)
-                        PlaySoundFrontend(-1, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
-                        QBCore.Functions.DeleteVehicle(veh)
-                        DoScreenFadeOut(200)
-                        Citizen.Wait(500)
-                        DoScreenFadeIn(200)
-                        RenderScriptCams(false, false, 1, true, true)
-                        InPreview = false
-                        break
+                Citizen.CreateThread(function()
+                    while true do
+                        if IsControlJustReleased(0, 177) then
+                            SetEntityVisible(PlayerPedId(), true, 1)
+                            FreezeEntityPosition(PlayerPedId(), false)
+                            PlaySoundFrontend(-1, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
+                            QBCore.Functions.DeleteVehicle(veh)
+                            DoScreenFadeOut(200)
+                            Citizen.Wait(500)
+                            DoScreenFadeIn(200)
+                            RenderScriptCams(false, false, 1, true, true)
+                            InPreview = false
+                            TriggerServerEvent("CL-PoliceGarage:server:SetActive", false)
+                            break
+                        end
+                        Citizen.Wait(1)
                     end
-                    Citizen.Wait(1)
-                end
-            end)
-        end, coords, true)
-    end
+                end)
+            end, coords, true)
+        end
+    end)
 end)
 
 function CloseMenu()
