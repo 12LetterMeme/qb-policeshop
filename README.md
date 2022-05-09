@@ -1,5 +1,5 @@
 # QB-PoliceGarage
-Police Garage System With Database ( Modified from CL-PoliceGarage )
+Police Garage System With grades ( Modified from CL-PoliceGarage )
 
 ![qb-policegarage copy](https://user-images.githubusercontent.com/91357757/167039816-bf63af8c-97dd-4725-ab05-aaf7d5051e46.png)
 # Credit
