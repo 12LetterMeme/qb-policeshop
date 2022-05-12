@@ -1,5 +1,5 @@
 # QB-PoliceGarage
-Police Garage System With grades ( Modified from CL-PoliceGarage )
+Police Garage System With grades ( Modified from CL-PoliceGarage ) Made for the amazing QBCore framework.
 
 ![qb-policegarage copy](https://user-images.githubusercontent.com/91357757/167039816-bf63af8c-97dd-4725-ab05-aaf7d5051e46.png)
 # Credit
@@ -7,6 +7,7 @@ Police Garage System With grades ( Modified from CL-PoliceGarage )
 Original script is here: https://github.com/NevoSwissa/CL-PoliceGarage <-- all credit goes to NevoSwissa
 
 #Description
+For this script to work you must properly edit the config to go with your police job(s)
 
 What I added was the ability to add job grades to the shop, for further customizability. Added in a helicopter shop aswell with the same job grades.
 
@@ -14,3 +15,7 @@ Also removed the RBG for the original config, and removed the impound feature fr
 
 # Read me
 Any car you are adding into the config must also be in your shared vehicle.lua
+
+I wont be providing that much support for this as its not hard to set up.
+
+QBCore police garage / QBCore police car shop / QBCore Grade based police shop / FiveM Police garage
