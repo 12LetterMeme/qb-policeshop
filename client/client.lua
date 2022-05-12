@@ -123,8 +123,8 @@ RegisterNetEvent("tlm-PoliceGarage:AirCatalog", function()
             isMenuHeader = true,
         }
     }
-    local authorizedVehicles1 = Config.PoliceAirVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
-    for k, v in pairs(authorizedVehicles1) do
+    local authorizedVehicles = Config.PoliceAirVehicles[QBCore.Functions.GetPlayerData().job.grade.level]
+    for k, v in pairs(authorizedVehicles) do
         vehicleMenu[#vehicleMenu+1] = {
             header = v.vehiclename,
             txt = "Buy: " .. v.vehiclename .. " For: " .. v.price .. "$",
