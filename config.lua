@@ -5,6 +5,7 @@ Config.MS = 'high' -- MS for the script recommended using high if not the "close
 Config.Job = 'police' --The job needed to open the menu
 
 --DO NOT add vehicles that are not in your shared ! otherwise the qb-garages wont work
+--You need to add all your job grades to the config, and properly add them into this simple config.
 Config.Vehicles = {
     [0] = { --grade 0
         { ['vehiclename'] = "car 1 grade 0",         ['vehicle'] = "car1",          ['price'] = 37000},
