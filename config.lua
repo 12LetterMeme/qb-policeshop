@@ -6,6 +6,14 @@ Config.Job = 'police' --The job needed to open the menu
 
 --DO NOT add vehicles that are not in your shared ! otherwise the qb-garages wont work
 --You need to add all your job grades to the config, and properly add them into this simple config.
+
+--[[
+{
+['vehiclename'] = "car 1 grade 0", --display name of the vehicle, add what you want here
+['vehicle'] = "car1", --this must be the car's spawn name, if not no car
+['price'] = 37000}, --price you want the car to be sold for
+}
+]]
 Config.Vehicles = {
     [0] = { --grade 0
         { ['vehiclename'] = "car 1 grade 0",         ['vehicle'] = "car1",          ['price'] = 37000},
@@ -15,6 +23,11 @@ Config.Vehicles = {
         { ['vehiclename'] = "car 1 grade 1",         ['vehicle'] = "car1",          ['price'] = 37000},
         { ['vehiclename'] = "car 2 grade 1",         ['vehicle'] = "car2",          ['price'] = 37000},
     },
+    [2] = { --grade 2
+        { ['vehiclename'] = "car 1 grade 2",         ['vehicle'] = "car1",          ['price'] = 37000},
+        { ['vehiclename'] = "car 2 grade 2",         ['vehicle'] = "car2",          ['price'] = 37000},
+    },
+    --ect.. ect..
 }
 
 Config.AirVehicles = {
@@ -26,4 +39,9 @@ Config.AirVehicles = {
         { ['vehiclename'] = "car 1 grade 1",         ['vehicle'] = "heli1",         ['price'] = 37000},
         { ['vehiclename'] = "car 1 grade 1",         ['vehicle'] = "heli2",         ['price'] = 37000},
     },
+    [2]  = {--grade 2
+        { ['vehiclename'] = "car 1 grade 2",         ['vehicle'] = "heli1",         ['price'] = 37000},
+        { ['vehiclename'] = "car 1 grade 2",         ['vehicle'] = "heli2",         ['price'] = 37000},
+    },
+    --ect.. ect..
 }
