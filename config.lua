@@ -14,7 +14,8 @@ Config.Job = 'police' --The job needed to open the menu
 ['price'] = 37000}, --price you want the car to be sold for
 }
 ]]
-Config.Vehicles = {
+Config.PoliceVehicles = {
+
     [0] = { --grade 0
         { ['vehiclename'] = "car 1 grade 0",         ['vehicle'] = "car1",          ['price'] = 37000},
         { ['vehiclename'] = "car 2 grade 0",         ['vehicle'] = "car2",          ['price'] = 37000},
@@ -30,7 +31,8 @@ Config.Vehicles = {
     --ect.. ect..
 }
 
-Config.AirVehicles = {
+Config.PoliceAirVehicles = {
+
     [0]  = {--grade 0
         { ['vehiclename'] = "car 1 grade 0",         ['vehicle'] = "heli1",         ['price'] = 37000},
         { ['vehiclename'] = "car 1 grade 0",         ['vehicle'] = "heli2",         ['price'] = 37000},
