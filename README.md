@@ -20,6 +20,6 @@ Any car you are adding into the config must also be in your shared vehicle.lua
 
 ![unknown (2)](https://user-images.githubusercontent.com/91357757/168119698-f78643dc-4874-4013-a380-e6ff8a1d684a.png)
 
-I wont be providing that much support for this as its not hard to set up.
+Support will not be given for installing the script
 
 QBCore police garage / QBCore police car shop / QBCore Grade based police shop / FiveM Police garage
